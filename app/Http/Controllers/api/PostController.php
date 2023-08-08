@@ -91,4 +91,20 @@ class PostController extends Controller
             }
     }
     }
+
+    public function deletePost(int $id){
+        $post = Post::find($id);
+        if($post){
+            $post->delete();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Deleted posts successfully.'
+            ]);
+        }else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'Something went wrong!'
+            ],404);
+        }
+    }
 }
