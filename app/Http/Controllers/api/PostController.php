@@ -6,7 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Post extends Controller
+class PostController extends Controller
 {
     public function getAllPosts(){
         $posts = Post::all();
@@ -14,8 +14,8 @@ class Post extends Controller
             return response()->json([
                 'status'=>200,
                 'message'=>'Posts found'
-            ])
-        }
+            ]);
+            }
         return response()->json([
             'status'=>404,
             'message'=>'No post found!'

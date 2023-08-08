@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\api\Post;
+use App\Http\Controllers\api\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/posts',[Post::class,'getAllPosts']);
+Route::get('/posts',[PostController::class,'getAllPosts']);
