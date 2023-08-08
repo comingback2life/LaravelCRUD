@@ -11,3 +11,6 @@
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+This repository consists of a REST API written using Laravel and I intend to further extend by building a frontend using React
