@@ -41,14 +41,54 @@ class PostController extends Controller
                 'content'=>$request->content,
                 'author'=>$request->author,
             ]);
+
+            if($post){
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'Post created succcesfully'
+                ]);
+            }else{
+                return response()->json([
+                    'status'=>404,
+                    'message'=>'Post could not be created.'
+                ],404);
+            }
         }
 
+    
+
+    }
+
+    public function editPost(Request $request,int $id){
+        $validator = Validator::make($request->all(),[
+            'title'=> 'required|string|max:191',
+            'content'=> 'required|string',
+            'author'=> 'required|string']);
+
+        if($validator->fails()){
+            return response()->json([
+                'status'=>422,
+                'errors'=> $validator->messages()
+            ],422); //422 == input error
+        }else{
+        $post = Post::find($id);
         if($post){
+            $post->update([
+                'title'=>$request->title,
+                'content'=>$request->content,
+                'author'=>$request->author,
+            ]);
+
             return response()->json([
                 'status'=>200,
-                'message'=>'Post created succcesfully'
+                'message'=>'Post updated succesfully'
             ]);
-        }
-
+        }else{
+                return response()->json([
+                    'status'=>404,
+                    'message'=>'Something went wrong!'
+                ],404);
+            }
+    }
     }
 }
